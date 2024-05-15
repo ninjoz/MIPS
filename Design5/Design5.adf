@@ -1,0 +1,57 @@
+[Project]
+Current Flow=Multivendor
+VCS=0
+version=1
+Current Config=compile
+
+[Configurations]
+compile=Design5
+
+[Library]
+Design5=.\Design5.lib
+
+[$LibMap$]
+Design5=.
+Active_lib=
+
+[Settings]
+FLOW_TYPE=HDL
+LANGUAGE=VHDL
+REFRESH_FLOW=1
+SYNTH_TOOL=<none>
+IMPL_TOOL=<none>
+FAMILY=
+FLOWTOOLS=ONLY_IMPL
+
+[IMPLEMENTATION]
+UCF=
+
+[Files]
+/MIPS.vhd=-1
+/Mux.vhd=-1
+/Mux_tb.vhd=-1
+/SignExtender.vhd=-1
+/SignExtender_tb.vhd=-1
+/ALU.vhd=-1
+/InstructionMemory.vhd=-1
+/ALU_tb.vhd=-1
+/InstructionMemory_tb.vhd=-1
+/Waveform Editor 2.awf=-1
+
+[Files.Data]
+.\src\MIPS.vhd=VHDL Source Code
+.\src\Mux.vhd=VHDL Source Code
+.\src\Mux_tb.vhd=VHDL Source Code
+.\src\SignExtender.vhd=VHDL Source Code
+.\src\SignExtender_tb.vhd=VHDL Source Code
+.\src\ALU.vhd=VHDL Source Code
+.\src\InstructionMemory.vhd=VHDL Source Code
+.\src\ALU_tb.vhd=VHDL Source Code
+.\src\InstructionMemory_tb.vhd=VHDL Source Code
+.\src\Waveform Editor 2.awf=Waveform File
+
+[HierarchyViewer]
+SortInfo=u
+HierarchyInformation=mux|mux|0 
+ShowHide=ShowTopLevel
+Selected=
