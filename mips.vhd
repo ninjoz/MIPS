@@ -101,23 +101,30 @@ component reg_mux is
 		   );
 end component;
 					
-signal Instruction: std_logic_vector(31 downto 0);	-- InstructionMemory, control_unit								 													 										  				   													 										  	  		  		 	  
+signal Instruction: std_logic_vector(31 downto 0) := x"00000000";	-- InstructionMemory, control_unit								 													 										  				   													 										  	  		  		 	  
 signal alu_op : std_logic_vector(2 downto 0);  -- control_unit, main_alu
 signal regdst, branch, memread, memtoreg, memwrite, alusrc, regwrite, zero: std_logic; -- control_unit	
-signal regwritedst : STD_LOGIC_VECTOR(4 downto 0);	-- reg_mux, registerfile1 
-signal writedata : STD_LOGIC_VECTOR(31 downto 0);  -- memory_mux, registerfile1
-signal readdata1, readdata2 : STD_LOGIC_VECTOR(31 downto 0);  -- registerfile1, alu_mux, alu	
-signal outputextend : std_logic_vector(31 downto 0);  -- signex, alu_mux
-signal aluinput2 : std_logic_vector(31 downto 0);  -- alu_mux, alu
-signal aluresult : std_logic_vector(31 downto 0);  -- main_alu, data_memory	 
+signal regwritedst : STD_LOGIC_VECTOR(4 downto 0) := "00000";	-- reg_mux, registerfile1 
+signal writedata : STD_LOGIC_VECTOR(31 downto 0) := x"00000000";  -- memory_mux, registerfile1
+signal readdata1, readdata2 : STD_LOGIC_VECTOR(31 downto 0) := x"00000000";  -- registerfile1, alu_mux, alu	
+signal outputextend : std_logic_vector(31 downto 0) := x"00000000";  -- signex, alu_mux
+signal aluinput2 : std_logic_vector(31 downto 0) := x"00000000";  -- alu_mux, alu
+signal aluresult : std_logic_vector(31 downto 0) := x"00000000";  -- main_alu, data_memory	 
 signal address_to_load : std_logic_vector(31 downto 0) := x"00000000";
 signal current_address : std_logic_vector(31 downto 0) := x"00000000";  -- pc, dir_adder
-signal dir_address : std_logic_vector(31 downto 0); -- dir_adder   
-signal shifted_extend : std_logic_vector(31 downto 0); -- main_shifter, shifted_adder
-signal shifted_output : std_logic_vector(31 downto 0); -- shifted_adder	
-signal mem_read : std_logic_vector(31 downto 0); -- memory, mem_mux
+signal dir_address : std_logic_vector(31 downto 0) := x"00000000"; -- dir_adder   
+signal shifted_extend : std_logic_vector(31 downto 0) := x"00000000"; -- main_shifter, shifted_adder
+signal shifted_output : std_logic_vector(31 downto 0) := x"00000000"; -- shifted_adder	
+signal mem_read : std_logic_vector(31 downto 0) := x"00000000"; -- memory, mem_mux
 
-begin  
+begin  	
+	
+	process (clk)
+	begin
+	if rising_edge(clk) then
+		current_address <= address_to_load;
+	end if;
+	end process;
 	
 	control_unit1 : control_unit port map( 
 		Instruction(31 downto 26), Instruction(5 downto 0), zero, alu_op, regdst, branch, memread, memtoreg, memwrite, 
@@ -149,9 +156,9 @@ begin
 	  	readdata1, aluinput2, alu_op, aluresult, zero
 	);	
 	
-	main_pc : PC port map( 
-		clk, address_to_load, current_address
-	);
+	--main_pc : PC port map( 
+	--	clk, address_to_load, current_address
+	--);
 	
 	dir_adder : adder port map(
 		current_address, x"00000004", dir_address
