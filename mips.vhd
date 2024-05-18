@@ -55,11 +55,11 @@ component Mux
 		   );
 end component; 	
 
-component PC is  
-	Port ( clk : in  STD_LOGIC;	 
-           address_to_load : in  STD_LOGIC_VECTOR (31 downto 0);
-           current_address : out  STD_LOGIC_VECTOR (31 downto 0));
-end component;
+--component PC is  
+--	Port ( clk : in  STD_LOGIC;	 
+--           address_to_load : in  STD_LOGIC_VECTOR (31 downto 0);
+--           current_address : out  STD_LOGIC_VECTOR (31 downto 0));
+--end component;
 
 component RegisterFile 
     Port ( clk : in  STD_LOGIC;
