@@ -1,9 +1,0 @@
-i<>.\src\MIPS.vhd
-i<>.\src\Mux.vhd
-i<>.\src\Mux_tb.vhd
-i<>.\src\SignExtender.vhd
-i<>.\src\SignExtender_tb.vhd
-i<>.\src\ALU.vhd
-i<>.\src\InstructionMemory.vhd
-i<>.\src\ALU_tb.vhd
-i<>.\src\InstructionMemory_tb.vhd
