@@ -1,7 +1,8 @@
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL; 
 
 entity RegisterFile is
     Port ( clk : in  STD_LOGIC;
@@ -14,14 +15,14 @@ end RegisterFile;
 architecture Behavioral of RegisterFile is
     type reg_array is array (0 to 31) of STD_LOGIC_VECTOR(31 downto 0); -- 32 32-bit registers
     signal registers : reg_array := (
-        "00001000000000010000000100000101", -- $zero
-        "00000000110000010001110000100101", -- mem 1
+		"00000000000000000000000000000000", -- $zero
+		"00000000110000010001110000100101", -- mem 1
         "11111100111111110000000001100010",
-        "00000110000000011111000000001110",
+        x"00000003",
         "00011100000011110000000000111000",
         "00000000000000000000000000001110",
         "00000000000000000000000000001110",
-        "01010011110000000000000011011000",
+        x"00000007",
         "00000000011000110000001110111100", 
         "00110000001111100000111000000011",
         "00000001111000000001110000001110", -- mem 10 
@@ -45,8 +46,7 @@ architecture Behavioral of RegisterFile is
         "00001111010110111111110101101111",
         "00001100100110111111001001101111", 
         "00001100001110110011010011100001", -- mem 30
-        "00001100001110010111100111101000"
-    );
+        "00001100001110010111100111101000" );
 begin
     process (clk)
     begin
@@ -65,10 +65,5 @@ begin
 		if(conv_integer(read_reg2)=0) then read_data2<=x"00000000";
 		else read_data2<=registers(conv_integer(read_reg2));
 		end if;
-	end process;
-
-    -- Read operation
-    --read_data1 <= registers(conv_integer(read_reg1));
-    --read_data2 <= registers(conv_integer(read_reg2));
-
+	end process;  
 end Behavioral;
